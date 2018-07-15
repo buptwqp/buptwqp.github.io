@@ -2,8 +2,8 @@
 <search>
   <entry>
     <title><![CDATA[this的全面解析]]></title>
-    <url>%2F2018%2F07%2F15%2F%E2%80%98this%E7%9A%84%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%2F</url>
-    <content type="text"><![CDATA[一、this的四条绑定规则 1、默认绑定&emsp;&emsp;适用于独立函数调用，当无法应用其他规则时就适用的是默认规则。 2、隐式绑定&emsp;&emsp;需要考虑的规则时调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含。 12345678function foo() &#123; console.log(this.a);&#125;var obj = &#123; a: 2, foo: foo&#125;obj.foo(); 3、显式绑定&emsp;&emsp;通常使用call(…)和apply(…)进行显式绑定。 1234567function foo() &#123; console.log(this.a);&#125;var obj= &#123; a:2&#125;;foo.call(obj) 硬绑定bind的实现123456789101112131415161718function foo(something) &#123; console.log(this.a, something); return this.a + something;&#125;// 简单的辅助绑定函数function bind(fn, obj) &#123; return function () &#123; return fn.apply(obj, arguments) &#125;&#125;var obj = &#123; a: 2&#125;var bar = bind(foo, obj);var b = bar(3);console.log(b) 4、new绑定12345function foo(a) &#123; this.a=a;&#125;var bar = new foo(2);console.log(bar.a) 使用new来调用foo(…)时，我们会构造一个新对象并把它绑定到foo(…)调用中的this上。new是最后一种可以影响函数调用时this绑定行为的方法，我们称之为new绑定。 二、四条绑定规则的优先级显示绑定–&gt;new绑定–&gt;隐式绑定–&gt;默认绑定 判断this的方法 函数是否在new中调用，如果是的话this绑定的是新创建的对象。 1var bar = new foo() 函数是否通过call、apply(显式绑定)或者硬绑定调用，如果是的话，this绑定的是指定的对象。 1var bar = foo.call(obj2) 函数是否在某个上下文对象中调用(隐式调用)，如果是的话，this绑定的是哪个上下文对象。 1var bar = obj1.foo() 4.如果都不是的话，使用的是默认绑定]]></content>
+    <url>%2F2018%2F07%2F15%2Fthis%E7%9A%84%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[一、this的四条绑定规则1、默认绑定&emsp;&emsp;适用于独立函数调用，当无法应用其他规则时就适用的是默认规则。 2、隐式绑定&emsp;&emsp;需要考虑的规则时调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含。12345678function foo() &#123; console.log(this.a);&#125;var obj = &#123; a: 2, foo: foo&#125;obj.foo(); 3、显式绑定&emsp;&emsp;通常使用call(…)和apply(…)进行显式绑定。1234567function foo() &#123; console.log(this.a);&#125;var obj= &#123; a:2&#125;;foo.call(obj) 硬绑定bind的实现123456789101112131415161718function foo(something) &#123; console.log(this.a, something); return this.a + something;&#125;// 简单的辅助绑定函数function bind(fn, obj) &#123; return function () &#123; return fn.apply(obj, arguments) &#125;&#125;var obj = &#123; a: 2&#125;var bar = bind(foo, obj);var b = bar(3);console.log(b) 4、new绑定12345function foo(a) &#123; this.a=a;&#125;var bar = new foo(2);console.log(bar.a) 使用new来调用foo(…)时，我们会构造一个新对象并把它绑定到foo(…)调用中的this上。new是最后一种可以影响函数调用时this绑定行为的方法，我们称之为new绑定。 二、四条绑定规则的优先级显示绑定–&gt;new绑定–&gt;隐式绑定–&gt;默认绑定 判断this的方法 函数是否在new中调用，如果是的话this绑定的是新创建的对象。 1var bar = new foo() 函数是否通过call、apply(显式绑定)或者硬绑定调用，如果是的话，this绑定的是指定的对象。 1var bar = foo.call(obj2) 函数是否在某个上下文对象中调用(隐式调用)，如果是的话，this绑定的是哪个上下文对象。 1var bar = obj1.foo() 4.如果都不是的话，使用的是默认绑定 注：箭头函数不会使用四条标准的绑定规则，而是根据当前的词法作用域来决定this。]]></content>
       <categories>
         <category>前端</category>
       </categories>
@@ -12,11 +12,6 @@
         <tag>JavaScript</tag>
         <tag>this</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2018%2F07%2F09%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%2F</url>
-    <content type="text"><![CDATA[计算机网络复习1、计算机网络体系结构本人毕业以后由于考虑家庭因素来到了甘肃移动工作，但是自己本身热爱编程，喜欢编程，喜欢写代码带来的成就感，但是由于单位性质原因，公司IT部门主要以运维为主，无大型项目的开发工作，作为部门自研小组成员主要做一些简单的内部系统的开发工作。距今毕业已有两年时间，但是反思两年技术水平提高太少，在前端开发依然算是一名新兵，不过自身计算机基础相对扎实，具有较强的学习能力，]]></content>
   </entry>
   <entry>
     <title><![CDATA[markdown使用小技巧]]></title>
