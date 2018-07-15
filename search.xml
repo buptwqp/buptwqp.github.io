@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[this的全面解析]]></title>
+    <url>%2F2018%2F07%2F15%2F%E2%80%98this%E7%9A%84%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[一、this的四条绑定规则 1、默认绑定&emsp;&emsp;适用于独立函数调用，当无法应用其他规则时就适用的是默认规则。 2、隐式绑定&emsp;&emsp;需要考虑的规则时调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含。 12345678function foo() &#123; console.log(this.a);&#125;var obj = &#123; a: 2, foo: foo&#125;obj.foo(); 3、显式绑定&emsp;&emsp;通常使用call(…)和apply(…)进行显式绑定。 1234567function foo() &#123; console.log(this.a);&#125;var obj= &#123; a:2&#125;;foo.call(obj) 硬绑定bind的实现123456789101112131415161718function foo(something) &#123; console.log(this.a, something); return this.a + something;&#125;// 简单的辅助绑定函数function bind(fn, obj) &#123; return function () &#123; return fn.apply(obj, arguments) &#125;&#125;var obj = &#123; a: 2&#125;var bar = bind(foo, obj);var b = bar(3);console.log(b) 4、new绑定12345function foo(a) &#123; this.a=a;&#125;var bar = new foo(2);console.log(bar.a) 使用new来调用foo(…)时，我们会构造一个新对象并把它绑定到foo(…)调用中的this上。new是最后一种可以影响函数调用时this绑定行为的方法，我们称之为new绑定。 二、四条绑定规则的优先级显示绑定–&gt;new绑定–&gt;隐式绑定–&gt;默认绑定 判断this的方法 函数是否在new中调用，如果是的话this绑定的是新创建的对象。 1var bar = new foo() 函数是否通过call、apply(显式绑定)或者硬绑定调用，如果是的话，this绑定的是指定的对象。 1var bar = foo.call(obj2) 函数是否在某个上下文对象中调用(隐式调用)，如果是的话，this绑定的是哪个上下文对象。 1var bar = obj1.foo() 4.如果都不是的话，使用的是默认绑定]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>JavaScript</tag>
+        <tag>this</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2018%2F07%2F09%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[计算机网络复习1、计算机网络体系结构本人毕业以后由于考虑家庭因素来到了甘肃移动工作，但是自己本身热爱编程，喜欢编程，喜欢写代码带来的成就感，但是由于单位性质原因，公司IT部门主要以运维为主，无大型项目的开发工作，作为部门自研小组成员主要做一些简单的内部系统的开发工作。距今毕业已有两年时间，但是反思两年技术水平提高太少，在前端开发依然算是一名新兵，不过自身计算机基础相对扎实，具有较强的学习能力，]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[markdown使用小技巧]]></title>
+    <url>%2F2018%2F07%2F08%2F%E7%94%9F%E6%B4%BB%E6%84%9F%E6%83%B3%2F</url>
+    <content type="text"><![CDATA[首行缩进&emsp;&emsp;写文章时，我们常常希望能够首行缩进，这时可以在段首加入&ensp;来输入一个空格.加入&emsp;来输入两个空格。&amp;emsp;&amp;emsp;生活不易，且行且珍惜&quot; 未完待续]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>MarkDown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[betterScroll的使用]]></title>
+    <url>%2F2018%2F07%2F01%2FbetterScroll%2F</url>
+    <content type="text"><![CDATA[BetterScroll 是一款重点解决移动端各种滚动场景需求的开源插件（GitHub地址），适用于滚动列表、选择器、轮播图、索引列表、开屏引导等应用场景。为了满足这些场景，它不仅支持惯性滚动、边界回弹、滚动条淡入淡出等效果的灵活配置，让滚动更加流畅，同时还提供了很多 API 方法和事件，以便我们更快地实现滚动场景下的需求，如下拉刷新、上拉加载。由于它基于原生 JavaScript 实现，不依赖任何框架，所以既可以原生 JavaScript 引用，也可以与目前前端 MVVM 框架结合使用，比如，其官网上的示例就是与 Vue 的结合。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142&lt;template&gt; &lt;div class=&quot;list&quot; ref=&apos;wrapper&apos;&gt; &lt;div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;当前城市&lt;/div&gt; &lt;div class=&quot;button-list&quot;&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;热门城市&lt;/div&gt; &lt;div class=&quot;button-list&quot;&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button &quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;button-wrapper&quot;&gt; &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;A&lt;/div&gt; &lt;div class=&quot;item-list&quot;&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;A&lt;/div&gt; &lt;div class=&quot;item-list&quot;&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;A&lt;/div&gt; &lt;div class=&quot;item-list&quot;&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;A&lt;/div&gt; &lt;div class=&quot;item-list&quot;&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;area&quot;&gt; &lt;div class=&quot;title border-topbottom&quot;&gt;A&lt;/div&gt; &lt;div class=&quot;item-list&quot;&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;div class=&quot;item border-bottom&quot;&gt;甘谷&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;&lt;/template&gt;&lt;script&gt; import BScroll from &apos;better-scroll&apos; export default &#123; name: &quot;List&quot;, mounted () &#123; this.scroll=new BScroll(this.$refs.wrapper) &#125; &#125;&lt;/script&gt;&lt;style lang=&quot;stylus&quot; scoped&gt; .border-topbottom &amp;:befoer border-color #ccc &amp;:after border-color #ccc .border-bottom &amp;:befoer border-color #ccc .list position absolute overflow hidden top 1.52rem left 0 right 0 bottom 0 .title text-align left line-height .44rem background #eee padding-left .26rem color #666 .button-list padding .1rem overflow hidden padding .1rem .6rem .1rem .button-wrapper width 33.33% float left .button margin .1rem text-align center border .02rem solid #ccc .item-list text-align left .item line-height .76rem color #666 padding-left .2rem&lt;/style&gt;]]></content>
+      <categories>
+        <category>组件</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>betterScroll</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue-awesome-swiper轮播图实践]]></title>
+    <url>%2F2018%2F07%2F01%2Fvue-awesome-swiper%E8%BD%AE%E6%92%AD%E5%9B%BE%E5%AE%9E%E8%B7%B5%2F</url>
+    <content type="text"><![CDATA[#vue-awesome-swiper轮播图实践1、安装swiper1npm install swiper@3.4.1 --save 2、引用组件12import Swiper from &apos;swiper&apos;;import &apos;swiper/dist/css/swiper.min.css&apos;; 3、.vue 文件 123456789101112131415161718192021222324252627282930313233343536373839404142&lt;template&gt; &lt;div class=&quot;wrapper&quot;&gt; &lt;swiper :options=&quot;swiperOption&quot; ref=&quot;mySwiper&quot; &gt; &lt;swiper-slide v-for=&quot;item of sweiperList&quot; :key=&quot;item.id&quot;&gt; &lt;img class=&quot;swiper-img&quot; :src=&quot;item.imgUrl&quot;/&gt; &lt;/swiper-slide&gt; &lt;div class=&quot;swiper-pagination&quot; slot=&quot;pagination&quot;&gt;&lt;/div&gt; &lt;/swiper&gt; &lt;/div&gt;&lt;/template&gt;&lt;script&gt; export default &#123; name: &apos;carrousel&apos;, data() &#123; return &#123; swiperOption: &#123; pagination: &apos;.swiper-pagination&apos;, loop: true &#125;, sweiperList:[&#123; id:&apos;001&apos;, imgUrl:&apos;http://img1.qunarzz.com/piao/fusion/1804/22/0e335ab3af3e3f02.jpg_750x200_cf284e05.jpg&apos; &#125;,&#123; id:&apos;002&apos;, imgUrl:&apos;http://img1.qunarzz.com/piao/fusion/1806/a1/e645466a5a1c9a02.jpg_750x200_9c489fbd.jpg&apos; &#125;] &#125; &#125; &#125;&lt;/script&gt;&lt;style lang=&quot;stylus&quot; scoped&gt; .wrapper width 100% height 0 overflow hidden padding-bottom 31.25% .swiper-img width 100%&lt;/style&gt;]]></content>
+      <categories>
+        <category>前端</category>
+        <category>移动端开发</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>轮播</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何在github上创建新的分支]]></title>
+    <url>%2F2018%2F07%2F01%2F%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%88%86%E6%94%AF%2F</url>
+    <content type="text"><![CDATA[第一步：git branch 查看当前分支情况第二步：git branch 分支名，新建一个自己的分支第三步：git checkout 分支名，切换到新建的分支第四步：git branch，重新查看一下第五步：git push -u origin 分支名,同步到github线上第六步：进行add追踪以及commit提交第七步：查看线上github仓库，新的v2分支就创建好啦！！！]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[git仓库新建]]></title>
+    <url>%2F2018%2F06%2F30%2Fgit%E4%BB%93%E5%BA%93%E6%96%B0%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[正确步骤： git init //初始化仓库 git add .(文件name) //添加文件到本地仓库 git commit -m “first commit” //添加文件描述信息 git remote add origin + 远程仓库地址 //链接远程仓库，创建主分支 git pull origin master // 把本地仓库的变化连接到远程仓库主分支 git push -u origin master //把本地仓库的文件推送到远程仓库]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[页面适应电脑和手机屏幕]]></title>
+    <url>%2F2018%2F06%2F30%2F%E9%A1%B5%E9%9D%A2%E9%80%82%E5%BA%94%E7%94%B5%E8%84%91%E5%92%8C%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%2F</url>
+    <content type="text"><![CDATA[##页面适应电脑和手机屏幕1&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt; 在网页的中增加以上这句话，可以让网页的宽度自动适应手机屏幕的宽度。其中：width=device-width ：表示宽度是设备屏幕的宽度initial-scale=1.0：表示初始的缩放比例minimum-scale=0.5：表示最小的缩放比例maximum-scale=2.0：表示最大的缩放比例user-scalable=yes：表示用户是否可以调整缩放比例 ##移动端300ms延迟点击事件解决方案 fastclick：处理移动端click事件300毫秒延迟12import fastClick from &apos;fastclick&apos;fastClick.attach(document.body)]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>移动端开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo博客删除问题]]></title>
+    <url>%2F2018%2F06%2F30%2Fhex%E5%8D%9A%E5%AE%A2%E5%88%A0%E9%99%A4%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[使用hexo搭建个人博客后发现我本地把md文件删除了，也重新生成和发布了但是首页不更新，网上查了原因以后发现需要使用hexo clean命令，然后在重新生成文章。]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于解决vue路由不起作用的解决方案]]></title>
+    <url>%2F2018%2F06%2F30%2F%E5%85%B3%E4%BA%8E%E8%A7%A3%E5%86%B3vue%E8%B7%AF%E7%94%B1%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[最新学习vue js,发现路由配置后不起作用，每次都是重定向到首页，多次怀疑是路由写错了，后来发现vue默认情况下,访问子组件需要在uri后面添加#再加路由path值才可以，后来发现需要在路由文件里面设置history就没问题了。 123456789101112131415161718192021// 引用模板import Vue from &apos;vue&apos;;import Router from &apos;vue-router&apos;;import Hello from &apos;../components/Hello.vue&apos;import About from &apos;../components/About.vue&apos;Vue.use(Router)export default new Router(&#123; mode:&apos;history&apos;, routes:[ &#123; path:&apos;/&apos;, component:Hello &#125;, &#123; path:&apos;/about&apos;, component:About &#125; ]&#125;)]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+</search>
