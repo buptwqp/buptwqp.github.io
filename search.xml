@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[委托理论和面向对象风格]]></title>
+    <url>%2F2018%2F07%2F16%2F%E5%A7%94%E6%89%98%E7%90%86%E8%AE%BA%E5%92%8C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%A3%8E%E6%A0%BC%2F</url>
+    <content type="text"><![CDATA[##总结&emsp;&emsp; 行为委托认为对象之间是兄弟关系，互相委托，而不是子类和父类的关系。JavaScrip的[[]prototype]机制本质上就是行为委托。也就是说，我们可以选择在JavaScript中努力实现类机制，也可以拥抱更自然的[prototype]委托机制12345678910111213141516171819202122232425262728293031323334353637383940414243444546// 面向对象风格function Foo() &#123; this.me = who;&#125;Foo.prototype.identify = function () &#123; return &quot;I am &quot; + this.me&#125;function Bar(who) &#123; Foo.call(this, who);&#125;Bar.prototype = Object.create(Foo.prototype);Bar.prototype.speak = function () &#123; alert(&quot;hello,&quot; + this.identify() + &apos;.&apos;)&#125;var b1 = new Bar(&apos;b1&apos;);var b2 = new Bar(&apos;b2&apos;);console.log(b1.speak());console.log(b2.speak());// 对象关联风格Foo=&#123; init: function(who) &#123; this.me=who; &#125;, identify: function() &#123; return &quot;I am&quot; +this.me; &#125;&#125;;Bar=object.create(Foo);Bar.speak=function() &#123; alert(&quot;hello,&quot; + this.identify() + &apos;.&apos;)&#125;;var b1=object.create(Bar);b1.init(&quot;b1&quot;);var b2=object.create(Bar);b2.init(&apos;b2&apos;);b1.speak();b2.speak();]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>原型</tag>
+        <tag>委托理论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[this的全面解析]]></title>
     <url>%2F2018%2F07%2F15%2Fthis%E7%9A%84%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%2F</url>
     <content type="text"><![CDATA[一、this的四条绑定规则1、默认绑定&emsp;&emsp;适用于独立函数调用，当无法应用其他规则时就适用的是默认规则。 2、隐式绑定&emsp;&emsp;需要考虑的规则时调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含。12345678function foo() &#123; console.log(this.a);&#125;var obj = &#123; a: 2, foo: foo&#125;obj.foo(); 3、显式绑定&emsp;&emsp;通常使用call(…)和apply(…)进行显式绑定。1234567function foo() &#123; console.log(this.a);&#125;var obj= &#123; a:2&#125;;foo.call(obj) 硬绑定bind的实现123456789101112131415161718function foo(something) &#123; console.log(this.a, something); return this.a + something;&#125;// 简单的辅助绑定函数function bind(fn, obj) &#123; return function () &#123; return fn.apply(obj, arguments) &#125;&#125;var obj = &#123; a: 2&#125;var bar = bind(foo, obj);var b = bar(3);console.log(b) 4、new绑定12345function foo(a) &#123; this.a=a;&#125;var bar = new foo(2);console.log(bar.a) 使用new来调用foo(…)时，我们会构造一个新对象并把它绑定到foo(…)调用中的this上。new是最后一种可以影响函数调用时this绑定行为的方法，我们称之为new绑定。 二、四条绑定规则的优先级显示绑定–&gt;new绑定–&gt;隐式绑定–&gt;默认绑定 判断this的方法 函数是否在new中调用，如果是的话this绑定的是新创建的对象。 1var bar = new foo() 函数是否通过call、apply(显式绑定)或者硬绑定调用，如果是的话，this绑定的是指定的对象。 1var bar = foo.call(obj2) 函数是否在某个上下文对象中调用(隐式调用)，如果是的话，this绑定的是哪个上下文对象。 1var bar = obj1.foo() 4.如果都不是的话，使用的是默认绑定 注：箭头函数不会使用四条标准的绑定规则，而是根据当前的词法作用域来决定this。]]></content>
