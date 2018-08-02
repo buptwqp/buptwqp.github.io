@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[前端面试准备]]></title>
     <url>%2F2018%2F07%2F17%2F%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%2F</url>
-    <content type="text"><![CDATA[一、CSS盒模型 基本概念：标准模型+IE模型 标准模型和IE模型区别标准模型:宽带和高度不包含paddingIE模型：宽带和高度包含padding CSS如何设置这两种模型box-sizing:content-boxbos-sizing:border-box js如何获取模型对应的宽和高dom.style.width/height(只能取到内联的)dom.currentStyle.width/heightwindow.getComputedStyle(dom).width/heightdom.getBoundingClientRect().width/height 实例题（根据盒模型解释边距重叠） BEC（边距重叠解决方案）###二、通信类 1、什么是同源策略？答：同源策略限制从一个源加载的文档或脚本如何与来自另一源的资源进行交互。产生的限制：cookie、localstorage和indexDb无法获取、DOM无法获得、ajax请求不能发送。 2、前后端如何通信？答：ajax、websocket、cors 3、xmlHttpRequest对象的工作流程？兼容性处理、事件的触发条件、事件的触发条件、事件的触发顺序 4、跨域通信的几种方式？答：JSONP、Hash、postMessage、websocket、cors]]></content>
+    <content type="text"><![CDATA[一、CSS盒模型 基本概念：标准模型+IE模型 标准模型和IE模型区别标准模型:宽带和高度不包含paddingIE模型：宽带和高度包含padding CSS如何设置这两种模型box-sizing:content-boxbos-sizing:border-box js如何获取模型对应的宽和高dom.style.width/height(只能取到内联的)dom.currentStyle.width/heightwindow.getComputedStyle(dom).width/heightdom.getBoundingClientRect().width/height 实例题（根据盒模型解释边距重叠） BEC（边距重叠解决方案）二、通信类1、什么是同源策略？答：同源策略限制从一个源加载的文档或脚本如何与来自另一源的资源进行交互。产生的限制：cookie、localstorage和indexDb无法获取、DOM无法获得、ajax请求不能发送。2、前后端如何通信？答：ajax、websocket、cors3、xmlHttpRequest对象的工作流程？兼容性处理、事件的触发条件、事件的触发条件、事件的触发顺序4、跨域通信的几种方式？答：JSONP、Hash、postMessage、websocket、cors]]></content>
       <categories>
         <category>前端</category>
       </categories>
